@@ -40,16 +40,16 @@ public class Scrabble {
         int[] letterScores = new int[]{1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
         Integer sum = 0;
         for (char character : characters) {
-            sum += letterScores[(int) character - 65];
+            sum += letterScores[(int) character - 'A'];
         }
         return sum;
     }
 
-    public Set<String> constructValidWords(String input) {
+    /**public Set<String> constructValidWords(String input) {
         HashSet<String> wordSet = new HashSet<String>();
         
         return wordSet;
-    }
+    }**//
 
     public void swap(int pos1, int pos2) {
         char temp = c[pos1];
@@ -63,7 +63,10 @@ public class Scrabble {
             for (int i = 0; i < start; i++) {
                 s = s + Character.toString(c[i]);
             }
-            wordSet.add(s);
+            if( s.length() > 1)
+            {
+              wordSet.add(s);
+            }
         }
 
         for (int i = start; i < c.length; i++) {
@@ -88,6 +91,7 @@ public class Scrabble {
         Scrabble scrabbleBoard = new Scrabble();
         scrabbleBoard.creatingTheDictionary();
         String input = "HOESMTL";
+        input = input.toUpperCase();
         scrabbleBoard.c = input.toCharArray();
         scrabbleBoard.permutation(0);
         System.out.println(scrabbleBoard.findMaxScoreWord());
